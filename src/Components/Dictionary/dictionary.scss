@@ -1,7 +1,5 @@
 body {
-  background-image: url(../assets/bg.jpeg);
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-color: rgba(30, 106, 136, 0.794);
 }
 .container {
   display: flex;
@@ -16,7 +14,7 @@ body {
     margin: 20px 0;
     padding: 10px 100px;
     border-radius: 10px;
-    box-shadow: 0 0 20px 5px white;
+    box-shadow: 0 0 20px 1px white;
     max-width: 50%;
 
     input {
@@ -30,7 +28,7 @@ body {
       margin: 20px;
       border: none;
       background-color: transparent;
-      box-shadow: 0 0 20px 5px white;
+      box-shadow: 0 0 10px 1px white;
       padding: 10px;
       border-radius: 10px;
       text-align: center;
@@ -45,13 +43,13 @@ body {
 
 .tabs {
   display: flex;
-  gap: 20px;
+  gap: 40px;
   color: rgb(255, 255, 255);
-  margin-bottom: 15px;
+  margin: 15px 0 15px 0;
 
   div:nth-child(1) {
     background-color: transparent;
-    box-shadow: 0 0 20px 5px white;
+    box-shadow: 0 0 10px 1px white;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 10px;
@@ -59,7 +57,7 @@ body {
 
   div:nth-child(2) {
     background-color: transparent;
-    box-shadow: 0 0 20px 5px white;
+    box-shadow: 0 0 10px 1px white;
     padding: 10px 20px;
     border-radius: 10px;
     cursor: pointer;
@@ -74,7 +72,7 @@ button {
   align-items: center;
   justify-content: center;
   color: white;
-  box-shadow: 0 0 20px 5px white;
+  box-shadow: 0 0 10px 1px white;
   padding: 10px 20px;
   border-radius: 10px;
   margin-top: 20px;
@@ -82,7 +80,7 @@ button {
   div {
     text-align: left;
     padding: 10px;
-    width: 300px;
+    width: 250px;
     margin: 0 20px;
     word-break: break-all;
     cursor: pointer;
