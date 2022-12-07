@@ -107,7 +107,9 @@ const Dictionary = () => {
                           {word.definition}
                         </span>
                       </div>
-                      <button onClick={() => setEdit(!edit)}>&#9998;</button>
+                      <button className="pencil" onClick={() => setEdit(!edit)}>
+                        &#9998;
+                      </button>
                     </>
                   )) || (
                     <EditWord
