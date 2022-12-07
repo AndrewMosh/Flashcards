@@ -12,17 +12,19 @@ const Dictionary = ({ words, setWords }) => {
   const [blurRight, setBlurRight] = useState(true);
   const handleSubmit = (e) => {
     e.preventDefault();
-    setWords([
-      ...words,
-      {
-        id: Math.floor(Math.random() * 10000),
-        term: term,
-        definition: def,
-        learned: false,
-      },
-    ]);
-    setDef("");
-    setTerm("");
+    if (term.trim().length !== 0 || def.trim().length !== 0) {
+      setWords([
+        ...words,
+        {
+          id: Math.floor(Math.random() * 10000),
+          term: term,
+          definition: def,
+          learned: false,
+        },
+      ]);
+      setDef("");
+      setTerm("");
+    }
   };
 
   const moveToLearned = (index) => {
@@ -51,28 +53,34 @@ const Dictionary = ({ words, setWords }) => {
           value={term}
           onChange={(e) => setTerm(e.target.value)}
           type="text"
-          placeholder="Enter a new word or term"
+          placeholder="Слово, предложение или термин"
         />
         <input
           value={def}
           onChange={(e) => setDef(e.target.value)}
           type="text"
-          placeholder="Enter its translation or definition"
+          placeholder="Перевод или определение"
         />
-        <button>add</button>
+        <button style={{ fontSize: "25px", padding: "5px 0" }}>+</button>
       </form>
       <div className="tabs">
         <div
-          style={{ transform: learned === false ? "scale(1.2)" : "scale(1)" }}
+          style={{
+            width: "50px",
+            transform: learned === false ? "scale(1.1)" : "scale(0.9)",
+          }}
           onClick={() => setLearned(false)}
         >
-          learning
+          изучаю
         </div>
         <div
-          style={{ transform: learned === true ? "scale(1.2)" : "scale(1)" }}
+          style={{
+            width: "50px",
+            transform: learned === true ? "scale(1.1)" : "scale(0.9)",
+          }}
           onClick={() => setLearned(true)}
         >
-          learned
+          выучил
         </div>
       </div>
       <div className="dictCont">
@@ -121,15 +129,15 @@ const Dictionary = ({ words, setWords }) => {
 
                   {(!word.learned && (
                     <button onClick={() => moveToLearned(word.id)}>
-                      add to learned
+                      в изученные
                     </button>
                   )) || (
                     <button onClick={() => moveToAll(word.id)}>
-                      back to all
+                      в словарь
                     </button>
                   )}
 
-                  <button onClick={() => deleteWord(word.id)}>delete</button>
+                  <button onClick={() => deleteWord(word.id)}>удалить</button>
                 </div>
               )
           )) ||
@@ -141,15 +149,15 @@ const Dictionary = ({ words, setWords }) => {
                   <div>{word.definition}</div>
                   {(!word.learned && (
                     <button onClick={() => moveToLearned(word.id)}>
-                      add to learned
+                      в изученные
                     </button>
                   )) || (
                     <button onClick={() => moveToAll(word.id)}>
-                      to learning
+                      в словарь
                     </button>
                   )}
 
-                  <button onClick={() => deleteWord(word.id)}>delete</button>
+                  <button onClick={() => deleteWord(word.id)}>удалить</button>
                 </div>
               )
           )}
