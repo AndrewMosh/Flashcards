@@ -59,8 +59,18 @@ const Dictionary = () => {
         <button>add</button>
       </form>
       <div className="tabs">
-        <div onClick={() => setLearned(false)}>all words</div>
-        <div onClick={() => setLearned(true)}>learned</div>
+        <div
+          style={{ transform: learned === false ? "scale(1.2)" : "scale(1)" }}
+          onClick={() => setLearned(false)}
+        >
+          all words
+        </div>
+        <div
+          style={{ transform: learned === true ? "scale(1.2)" : "scale(1)" }}
+          onClick={() => setLearned(true)}
+        >
+          learned
+        </div>
       </div>
       <div className="dictCont">
         {(!learned &&

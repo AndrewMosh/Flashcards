@@ -53,22 +53,15 @@ body {
     box-shadow: 0 0 20px 5px white;
     padding: 10px 20px;
     cursor: pointer;
-  }
-  div:nth-child(1):hover {
-    transform: scale(1.2);
-    color: white;
     border-radius: 10px;
   }
+
   div:nth-child(2) {
     background-color: transparent;
     box-shadow: 0 0 20px 5px white;
     padding: 10px 20px;
-  }
-  div:nth-child(2):hover {
-    transform: scale(1.2);
-    color: white;
-    cursor: pointer;
     border-radius: 10px;
+    cursor: pointer;
   }
 }
 button {
@@ -91,6 +84,7 @@ button {
     width: 300px;
     margin: 0 20px;
     word-break: break-all;
+    cursor: pointer;
   }
   button {
     border: none;
