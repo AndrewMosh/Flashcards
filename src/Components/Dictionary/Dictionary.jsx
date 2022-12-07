@@ -3,9 +3,7 @@ import { useState } from "react";
 import "./dictionary.scss";
 import { EditWord } from "../EditWord/EditWord";
 
-const vocab = [];
-const Dictionary = () => {
-  const [words, setWords] = useState(vocab);
+const Dictionary = ({ words, setWords }) => {
   const [term, setTerm] = useState("");
   const [def, setDef] = useState("");
   const [learned, setLearned] = useState(false);
