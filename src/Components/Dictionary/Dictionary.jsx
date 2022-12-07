@@ -36,6 +36,10 @@ const Dictionary = () => {
       )
     );
   };
+  const deleteWord = (index) => {
+    let newArr = words.filter((word) => word.id !== index);
+    setWords(newArr);
+  };
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -74,7 +78,7 @@ const Dictionary = () => {
                   </button>
                 )}
 
-                <button>delete</button>
+                <button onClick={() => deleteWord(word.id)}>delete</button>
               </div>
             )
         )) ||
@@ -94,7 +98,7 @@ const Dictionary = () => {
                   </button>
                 )}
 
-                <button>delete</button>
+                <button onClick={() => deleteWord(word.id)}>delete</button>
               </div>
             )
         )}
