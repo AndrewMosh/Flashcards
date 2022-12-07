@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import "./dictionary.scss";
 
 const vocab = [];
 const Dictionary = () => {
@@ -41,7 +42,7 @@ const Dictionary = () => {
     setWords(newArr);
   };
   return (
-    <div>
+    <div className="container">
       <form onSubmit={handleSubmit}>
         <input
           value={term}
@@ -57,51 +58,53 @@ const Dictionary = () => {
         />
         <button>add</button>
       </form>
-      <div>
+      <div className="tabs">
         <div onClick={() => setLearned(false)}>all words</div>
         <div onClick={() => setLearned(true)}>learned</div>
       </div>
-      {(!learned &&
-        words.map(
-          (word) =>
-            !word.learned && (
-              <div key={word.id}>
-                <div>{word.term}</div>
-                <div>{word.definition}</div>
-                {(!word.learned && (
-                  <button onClick={() => moveToLearned(word.id)}>
-                    add to learned
-                  </button>
-                )) || (
-                  <button onClick={() => moveToAll(word.id)}>
-                    back to all
-                  </button>
-                )}
+      <div className="dictCont">
+        {(!learned &&
+          words.map(
+            (word) =>
+              !word.learned && (
+                <div className="book" key={word.id}>
+                  <div>{word.term}</div>
+                  <div>{word.definition}</div>
+                  {(!word.learned && (
+                    <button onClick={() => moveToLearned(word.id)}>
+                      add to learned
+                    </button>
+                  )) || (
+                    <button onClick={() => moveToAll(word.id)}>
+                      back to all
+                    </button>
+                  )}
 
-                <button onClick={() => deleteWord(word.id)}>delete</button>
-              </div>
-            )
-        )) ||
-        words.map(
-          (word) =>
-            word.learned && (
-              <div key={word.id}>
-                <div>{word.term}</div>
-                <div>{word.definition}</div>
-                {(!word.learned && (
-                  <button onClick={() => moveToLearned(word.id)}>
-                    add to learned
-                  </button>
-                )) || (
-                  <button onClick={() => moveToAll(word.id)}>
-                    back to all
-                  </button>
-                )}
+                  <button onClick={() => deleteWord(word.id)}>delete</button>
+                </div>
+              )
+          )) ||
+          words.map(
+            (word) =>
+              word.learned && (
+                <div className="book" key={word.id}>
+                  <div>{word.term}</div>
+                  <div>{word.definition}</div>
+                  {(!word.learned && (
+                    <button onClick={() => moveToLearned(word.id)}>
+                      add to learned
+                    </button>
+                  )) || (
+                    <button onClick={() => moveToAll(word.id)}>
+                      back to all
+                    </button>
+                  )}
 
-                <button onClick={() => deleteWord(word.id)}>delete</button>
-              </div>
-            )
-        )}
+                  <button onClick={() => deleteWord(word.id)}>delete</button>
+                </div>
+              )
+          )}
+      </div>
     </div>
   );
 };
