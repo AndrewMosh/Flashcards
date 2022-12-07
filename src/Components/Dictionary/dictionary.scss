@@ -96,6 +96,9 @@ button {
   button:hover {
     transform: scale(1.2);
   }
+  .indent {
+    padding-left: 10px;
+  }
 }
 
 .dictCont {
@@ -104,4 +107,10 @@ button {
   max-height: 60vh;
   overflow: auto;
   padding: 30px;
+}
+.blur {
+  filter: blur(4px);
+}
+.nonBlur {
+  filter: blur(0);
 }

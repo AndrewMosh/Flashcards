@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "./dictionary.scss";
+import { EditWord } from "../EditWord/EditWord";
 
 const vocab = [];
 const Dictionary = () => {
@@ -8,6 +9,9 @@ const Dictionary = () => {
   const [term, setTerm] = useState("");
   const [def, setDef] = useState("");
   const [learned, setLearned] = useState(false);
+  const [edit, setEdit] = useState(false);
+  const [blurLeft, setBlurLeft] = useState(true);
+  const [blurRight, setBlurRight] = useState(true);
   const handleSubmit = (e) => {
     e.preventDefault();
     setWords([
@@ -41,6 +45,7 @@ const Dictionary = () => {
     let newArr = words.filter((word) => word.id !== index);
     setWords(newArr);
   };
+
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
@@ -63,7 +68,7 @@ const Dictionary = () => {
           style={{ transform: learned === false ? "scale(1.2)" : "scale(1)" }}
           onClick={() => setLearned(false)}
         >
-          all words
+          learning
         </div>
         <div
           style={{ transform: learned === true ? "scale(1.2)" : "scale(1)" }}
@@ -78,8 +83,42 @@ const Dictionary = () => {
             (word) =>
               !word.learned && (
                 <div className="book" key={word.id}>
-                  <div>{word.term}</div>
-                  <div>{word.definition}</div>
+                  {(!edit && (
+                    <>
+                      <div>
+                        <span
+                          title="редактировать"
+                          onClick={() => setBlurLeft(!blurLeft)}
+                          className={
+                            !blurLeft ? "blur indent" : "nonBlur indent"
+                          }
+                        >
+                          {word.term}
+                        </span>
+                      </div>
+                      <div>
+                        <span
+                          title="редактировать"
+                          onClick={() => setBlurRight(!blurRight)}
+                          className={
+                            !blurRight ? "blur indent" : "nonBlur indent"
+                          }
+                        >
+                          {word.definition}
+                        </span>
+                      </div>
+                      <button onClick={() => setEdit(!edit)}>&#9998;</button>
+                    </>
+                  )) || (
+                    <EditWord
+                      word={word}
+                      edit={edit}
+                      setEdit={setEdit}
+                      words={words}
+                      setWords={setWords}
+                    />
+                  )}
+
                   {(!word.learned && (
                     <button onClick={() => moveToLearned(word.id)}>
                       add to learned
@@ -106,7 +145,7 @@ const Dictionary = () => {
                     </button>
                   )) || (
                     <button onClick={() => moveToAll(word.id)}>
-                      back to all
+                      to learning
                     </button>
                   )}
 
