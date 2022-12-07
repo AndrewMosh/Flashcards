@@ -21,14 +21,12 @@ export const EditWord = ({ word, edit, setEdit, words, setWords }) => {
         type="text"
         value={term}
         onChange={(e) => setTerm(e.target.value)}
-        autoFocus
       />
       <input
         className="edit"
         type="text"
         value={def}
         onChange={(e) => setDef(e.target.value)}
-        autoFocus
       />
       <button onClick={() => handleClick(word.id)}>&#10004;</button>
     </>
