@@ -35,7 +35,7 @@ export const Flashcard = ({ words, setWords }) => {
               title="в изученные"
               onClick={() => moveToLearned(question.id)}
             >
-              X
+              + в изученные
             </span>
             {(answer && (
               <>
