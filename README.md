@@ -10,6 +10,8 @@
 <img align="left" alt="GitHub" width="40px" src="https://github.com/AndrewMosh/AndrewMosh/blob/main/icons/github.png"/>
 <img align="left" alt="Sass" width="40px" src="https://github.com/AndrewMosh/AndrewMosh/blob/main/icons/free-icon-sass-5968358.png"/>
 
+<br>
+
 ## О приложении
 
 В приложение добавлена функция : <br>
