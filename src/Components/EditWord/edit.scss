@@ -1,8 +1,31 @@
-.edit {
-  background-color: transparent;
-  border: 1px solid white;
+.editContainer {
+  position: fixed;
+  top: 40%;
+  background-color: rgb(30, 106, 136);
   color: white;
-  width: 250px;
   font-size: 18px;
-  padding: 5px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 0 10px 1px white;
+  min-width: 30vw;
+  min-height: 15vh;
+  border-radius: 10px;
+
+  button {
+    border: none;
+    background-color: transparent;
+  }
+
+  .edit {
+    padding: 5px 10px;
+    border: 1px solid white;
+    outline: none;
+  }
+  button {
+    color: white;
+
+    padding: 5px;
+  }
 }

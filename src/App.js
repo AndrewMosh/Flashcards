@@ -1,6 +1,9 @@
 import "./App.css";
 import Dictionary from "./Components/Dictionary/Dictionary";
 import { useState, useEffect } from "react";
+import Header from "./Components/Header/Header";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Flashcard } from "./Components/Flashcards/Flashcard";
 
 function App() {
   const Vocabulary = JSON.parse(window.localStorage.getItem("words")) || [];
@@ -12,7 +15,23 @@ function App() {
 
   return (
     <div className="App">
-      <Dictionary words={words} setWords={setWords} />
+      <Router>
+        <Header />
+        <Routes>
+          <Route
+            path="/"
+            element={<Dictionary words={words} setWords={setWords} />}
+          />
+          <Route
+            path="/word/:wordId"
+            element={<Dictionary words={words} setWords={setWords} />}
+          />
+          <Route
+            path="/quiz"
+            element={<Flashcard words={words} setWords={setWords} />}
+          />
+        </Routes>
+      </Router>
     </div>
   );
 }

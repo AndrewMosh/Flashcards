@@ -2,14 +2,21 @@ import React from "react";
 import { useState } from "react";
 import "./dictionary.scss";
 import { EditWord } from "../EditWord/EditWord";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const Dictionary = ({ words, setWords }) => {
   const [term, setTerm] = useState("");
   const [def, setDef] = useState("");
   const [learned, setLearned] = useState(false);
-  const [edit, setEdit] = useState(false);
   const [blurLeft, setBlurLeft] = useState(true);
   const [blurRight, setBlurRight] = useState(true);
+  const [edit, setEdit] = useState(false);
+
+  const { wordId } = useParams();
+
+  let task = words.find(({ id }) => id === +wordId);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (term.trim().length !== 0 || def.trim().length !== 0) {
@@ -89,44 +96,34 @@ const Dictionary = ({ words, setWords }) => {
             (word) =>
               !word.learned && (
                 <div className="book" key={word.id}>
-                  {(!edit && (
-                    <>
-                      <div>
-                        <span
-                          title="редактировать"
-                          onClick={() => setBlurLeft(!blurLeft)}
-                          className={
-                            !blurLeft ? "blur indent" : "nonBlur indent"
-                          }
-                        >
-                          {word.term}
-                        </span>
-                      </div>
-                      <div>
-                        <span
-                          title="редактировать"
-                          onClick={() => setBlurRight(!blurRight)}
-                          className={
-                            !blurRight ? "blur indent" : "nonBlur indent"
-                          }
-                        >
-                          {word.definition}
-                        </span>
-                      </div>
-                      <button className="pencil" onClick={() => setEdit(!edit)}>
-                        &#9998;
-                      </button>
-                    </>
-                  )) || (
-                    <EditWord
-                      word={word}
-                      edit={edit}
-                      setEdit={setEdit}
-                      words={words}
-                      setWords={setWords}
-                    />
-                  )}
-
+                  <>
+                    <div>
+                      <span
+                        title="редактировать"
+                        onClick={() => setBlurLeft(!blurLeft)}
+                        className={!blurLeft ? "blur indent" : "nonBlur indent"}
+                      >
+                        {word.term}
+                      </span>
+                    </div>
+                    <div>
+                      <span
+                        title="редактировать"
+                        onClick={() => setBlurRight(!blurRight)}
+                        className={
+                          !blurRight ? "blur indent" : "nonBlur indent"
+                        }
+                      >
+                        {word.definition}
+                      </span>
+                    </div>
+                    <Link
+                      onClick={() => setEdit(!edit)}
+                      to={`/word/${word.id}`}
+                    >
+                      <button className="pencil">&#9998;</button>
+                    </Link>
+                  </>
                   {(!word.learned && (
                     <button onClick={() => moveToLearned(word.id)}>
                       в изученные
@@ -136,7 +133,6 @@ const Dictionary = ({ words, setWords }) => {
                       в словарь
                     </button>
                   )}
-
                   <button onClick={() => deleteWord(word.id)}>удалить</button>
                 </div>
               )
@@ -162,6 +158,15 @@ const Dictionary = ({ words, setWords }) => {
               )
           )}
       </div>
+      {edit && (
+        <EditWord
+          words={words}
+          setWords={setWords}
+          task={task}
+          edit={edit}
+          setEdit={setEdit}
+        />
+      )}
     </div>
   );
 };

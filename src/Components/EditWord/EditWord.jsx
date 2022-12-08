@@ -2,9 +2,9 @@ import React from "react";
 import { useState } from "react";
 import "./edit.scss";
 
-export const EditWord = ({ word, edit, setEdit, words, setWords }) => {
-  const [term, setTerm] = useState(word.term);
-  const [def, setDef] = useState(word.definition);
+export const EditWord = ({ edit, setEdit, words, setWords, task }) => {
+  const [term, setTerm] = useState(task.term);
+  const [def, setDef] = useState(task.definition);
 
   const handleClick = (index) => {
     setWords(
@@ -15,12 +15,13 @@ export const EditWord = ({ word, edit, setEdit, words, setWords }) => {
     setEdit(!edit);
   };
   return (
-    <>
+    <div className="editContainer">
       <input
         className="edit"
         type="text"
         value={term}
         onChange={(e) => setTerm(e.target.value)}
+        autoFocus={true}
       />
       <input
         className="edit"
@@ -28,7 +29,9 @@ export const EditWord = ({ word, edit, setEdit, words, setWords }) => {
         value={def}
         onChange={(e) => setDef(e.target.value)}
       />
-      <button onClick={() => handleClick(word.id)}>&#10004;</button>
-    </>
+      <button title="сохранить" onClick={() => handleClick(task.id)}>
+        &#10004;
+      </button>
+    </div>
   );
 };

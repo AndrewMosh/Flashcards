@@ -1,0 +1,20 @@
+header {
+  height: 50px;
+
+  background-color: transparent;
+  box-shadow: inset 0 0 20px 1px white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  nav {
+    a {
+      text-decoration: none;
+      color: white;
+      margin: 15px;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+}

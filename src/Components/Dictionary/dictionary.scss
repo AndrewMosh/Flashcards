@@ -23,6 +23,7 @@ body {
       padding: 10px;
       width: 220px;
       border-radius: 10px;
+      outline: none;
     }
     button {
       margin: 20px;
@@ -107,7 +108,7 @@ button {
 .dictCont {
   display: flex;
   flex-direction: column;
-  max-height: 60vh;
+  max-height: 50vh;
   overflow: auto;
   padding: 30px;
 }
