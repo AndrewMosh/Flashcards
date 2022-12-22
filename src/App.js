@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Header from "./Components/Header/Header";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Flashcard } from "./Components/Flashcards/Flashcard";
+import Test from "./Components/Test/Test";
 
 function App() {
   const Vocabulary = JSON.parse(window.localStorage.getItem("words")) || [];
@@ -29,6 +30,10 @@ function App() {
           <Route
             path="/quiz"
             element={<Flashcard words={words} setWords={setWords} />}
+          />
+          <Route
+            path="/test"
+            element={<Test words={words} setWords={setWords} />}
           />
         </Routes>
       </Router>
