@@ -7,10 +7,13 @@ export const MyTest = () => {
   const [v2, setV2] = useState({ answer: "", correct: false });
   const [v3, setV3] = useState({ answer: "", correct: false });
   const [v4, setV4] = useState({ answer: "", correct: false });
-  const [correct, setCorrect] = useState(false);
+
   const [test, setTest] = useState([]);
   const [message, setMessage] = useState({ one: "", two: "" });
-
+  let correctStat = [v1, v2, v3, v4].map((el) => {
+    return el.correct;
+  });
+  let anyTrue = correctStat.some((el) => el === true);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
@@ -19,10 +22,20 @@ export const MyTest = () => {
       v2.answer.length > 0 &&
       v3.answer.length > 0 &&
       v4.answer.length > 0 &&
-      correct === true
+      anyTrue === true
     ) {
       setTest([...test, { term: term, v1: v1, v2: v2, v3: v3, v4: v4 }]);
+      setTerm("");
+      setV1({ answer: "", correct: false });
+      setV2({ answer: "", correct: false });
+      setV3({ answer: "", correct: false });
+      setV4({ answer: "", correct: false });
+
+      setMessage({ one: "Добавлено" });
+
       console.log(test);
+      console.log(correctStat);
+      console.log(anyTrue);
     } else {
       if (
         term.length === 0 ||
@@ -32,9 +45,8 @@ export const MyTest = () => {
         v1.answer.length === 0
       ) {
         setMessage({ ...message, one: "выбери все 4 варианта" });
-      }
-      if (correct === false) {
-        setMessage({ ...message, two: "отметь галочкой правильный ответ" });
+      } else if (anyTrue === false) {
+        setMessage({ ...message, two: "отметь верный вариант" });
       }
     }
   };
@@ -53,15 +65,14 @@ export const MyTest = () => {
             type="text"
             onChange={(e) => {
               setV1({ ...v1, answer: e.target.value });
-              setCorrect(!correct);
             }}
           />
           <input
             type="checkbox"
             onChange={() => {
               setV1({ ...v1, answer: v1.answer, correct: !v1.correct });
-              setCorrect(!correct);
             }}
+            checked={v1.correct === true ? true : false}
           />
         </div>
         <div>
@@ -70,15 +81,14 @@ export const MyTest = () => {
             type="text"
             onChange={(e) => {
               setV2({ ...v2, answer: e.target.value });
-              setCorrect(!correct);
             }}
           />
           <input
             type="checkbox"
             onChange={() => {
               setV2({ ...v2, answer: v2.answer, correct: !v2.correct });
-              setCorrect(!correct);
             }}
+            checked={v2.correct === true ? true : false}
           />
         </div>
         <div>
@@ -87,15 +97,14 @@ export const MyTest = () => {
             type="text"
             onChange={(e) => {
               setV3({ ...v3, answer: e.target.value });
-              setCorrect(!correct);
             }}
           />
           <input
             type="checkbox"
             onChange={() => {
               setV3({ ...v3, answer: v3.answer, correct: !v3.correct });
-              setCorrect(!correct);
             }}
+            checked={v3.correct === true ? true : false}
           />
         </div>
         <div>
@@ -104,20 +113,20 @@ export const MyTest = () => {
             type="text"
             onChange={(e) => {
               setV4({ ...v4, answer: e.target.value });
-              setCorrect(!correct);
             }}
           />
           <input
             type="checkbox"
             onChange={() => {
               setV4({ ...v4, answer: v4.answer, correct: !v4.correct });
-              setCorrect(!correct);
             }}
+            checked={v4.correct === true ? true : false}
           />
         </div>
       </div>
-      <button>Сохранить</button>
+      <button>Сохранить</button> <br />
       <span>{message.one}</span>
+      <br />
       <span>{message.two}</span>
     </form>
   );

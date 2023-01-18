@@ -9,8 +9,8 @@ const Test = ({ words, setWords }) => {
   const [constructor3, setConstructor3] = useState(false);
 
   return (
-    <div className="test_container">
-      {(!constructor1 && !constructor2 && !constructor3 && (
+    <div>
+      <div className="test_container">
         <>
           <button onClick={() => setConstructor1(!constructor1)}>
             Термин &rarr; Определение
@@ -22,8 +22,9 @@ const Test = ({ words, setWords }) => {
             Свой тест
           </button>
         </>
-      )) ||
-        (constructor1 && <TermTest words={words} setWords={setWords} />) ||
+      </div>
+
+      {(constructor1 && <TermTest words={words} setWords={setWords} />) ||
         (constructor2 && (
           <DefinitionTest words={words} setWords={setWords} />
         )) ||

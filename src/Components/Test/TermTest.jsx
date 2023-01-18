@@ -22,6 +22,11 @@ export const TermTest = ({ words, setWords }) => {
       correct === true
     ) {
       setTest([...test, { term: term, v1: v1, v2: v2, v3: v3, v4: v4 }]);
+      setTerm("");
+      setV1({ answer: "", correct: false });
+      setV2({ answer: "", correct: false });
+      setV3({ answer: "", correct: false });
+      setV4({ answer: "", correct: false });
       console.log(test);
     } else {
       if (

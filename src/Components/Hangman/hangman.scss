@@ -1,0 +1,44 @@
+.hangman {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &__word {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    &__letters {
+      height: 50px;
+      width: 50px;
+      background-color: aliceblue;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+    }
+  }
+  &__alphabet {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    gap: 10px;
+    width: 350px;
+    flex-wrap: wrap;
+    div {
+      background-color: bisque;
+      width: 60px;
+      height: 30px;
+      font-size: 20px;
+    }
+    .notBitch {
+      background-color: rgba(128, 128, 128, 0.578);
+    }
+  }
+}
+.bitch {
+  display: none;
+}
+.fuckU {
+  display: flex;
+}

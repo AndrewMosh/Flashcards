@@ -26,6 +26,9 @@
       flex-direction: column;
       word-break: break-all;
       gap: 20px;
+      max-height: 400px;
+
+      overflow: auto;
 
       button {
         border: none;
