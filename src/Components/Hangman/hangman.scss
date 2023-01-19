@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
   &__word {
     display: flex;
     gap: 10px;
@@ -31,9 +32,35 @@
       height: 30px;
       font-size: 20px;
     }
-    .notBitch {
-      background-color: rgba(128, 128, 128, 0.578);
+  }
+  &__miss {
+    display: flex;
+    gap: 10px;
+    div {
+      background-color: aquamarine;
+      width: 35px;
+      height: 35px;
+      font-size: 23px;
+      color: white;
+      font-weight: bolder;
     }
+  }
+  &__lostWin {
+    position: absolute;
+    background-color: antiquewhite;
+    padding: 70px;
+    border-radius: 10px;
+    p {
+      color: rgb(56, 53, 76);
+      span {
+        color: red;
+      }
+    }
+  }
+  &__buttons {
+    display: flex;
+    margin: 20px;
+    gap: 50px;
   }
 }
 .bitch {
@@ -41,4 +68,7 @@
 }
 .fuckU {
   display: flex;
+}
+.cunt {
+  background-color: bisque;
 }
