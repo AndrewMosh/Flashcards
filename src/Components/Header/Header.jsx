@@ -10,6 +10,7 @@ const Header = () => {
         <Link to={`/quiz`}>Карточки</Link>
         <Link to={`/test`}>Создать тест</Link>
         <Link to={`/hangman`}>Виселица</Link>
+        <Link to={`/exercises`}>Упражнения</Link>
       </nav>
     </header>
   );

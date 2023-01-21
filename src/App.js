@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Flashcard } from "./Components/Flashcards/Flashcard";
 import Test from "./Components/Test/Test";
 import { Hangman } from "./Components/Hangman/Hangman";
+import { Match } from "./Components/Match/Match";
 
 function App() {
   const Vocabulary = JSON.parse(window.localStorage.getItem("words")) || [];
@@ -39,6 +40,10 @@ function App() {
           <Route
             path="/hangman"
             element={<Hangman words={words} setWords={setWords} />}
+          />
+          <Route
+            path="/exercises"
+            element={<Match words={words} setWords={setWords} />}
           />
         </Routes>
       </Router>

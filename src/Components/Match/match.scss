@@ -1,0 +1,52 @@
+.match_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .match {
+    display: flex;
+    justify-content: center;
+
+    &__drag {
+      width: 200px;
+      text-align: left;
+      margin: 10px;
+    }
+    &__drop {
+      background-color: aliceblue;
+      margin-bottom: 5px;
+      padding: 10px;
+      min-width: 100px;
+
+      span {
+        display: none;
+      }
+    }
+  }
+
+  .whore {
+    background-color: aliceblue;
+  }
+  .fuck {
+    background-color: bisque;
+  }
+  .cunt {
+    background-color: rgb(196, 246, 246);
+  }
+  .match_buttons {
+    margin: 30px;
+  }
+  .match_dnd {
+    display: flex;
+    gap: 10px;
+    width: 200px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    div {
+      background-color: antiquewhite;
+      padding: 10px;
+    }
+  }
+}
