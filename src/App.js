@@ -17,7 +17,7 @@ function App() {
   }, [words]);
 
   return (
-    <div className="App">
+    <div className="app">
       <Router>
         <Header />
         <Routes>
@@ -41,10 +41,10 @@ function App() {
             path="/hangman"
             element={<Hangman words={words} setWords={setWords} />}
           />
-          <Route
+          {/* <Route
             path="/exercises"
             element={<Match words={words} setWords={setWords} />}
-          />
+          /> */}
         </Routes>
       </Router>
     </div>

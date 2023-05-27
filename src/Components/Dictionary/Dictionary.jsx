@@ -27,6 +27,9 @@ const Dictionary = ({ words, setWords }) => {
           term: term,
           definition: def,
           learned: false,
+          right: false,
+          wrong: false,
+          empty: true,
         },
       ]);
       setDef("");

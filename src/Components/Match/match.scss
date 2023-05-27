@@ -31,7 +31,7 @@
     background-color: bisque;
   }
   .cunt {
-    background-color: rgb(196, 246, 246);
+    background-color: rgba(196, 246, 246, 0.431);
   }
   .match_buttons {
     margin: 30px;
@@ -49,4 +49,14 @@
       padding: 10px;
     }
   }
+}
+
+.right {
+  border: 2px solid green;
+}
+.wrong {
+  border: 2px solid red;
+}
+.empty {
+  border: none;
 }
