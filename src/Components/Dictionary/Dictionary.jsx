@@ -4,15 +4,17 @@ import "./dictionary.scss";
 import { EditWord } from "../EditWord/EditWord";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-
-const Dictionary = ({ words, setWords }) => {
+import { useSelector, useDispatch } from "react-redux";
+import { handleAdd, toggleMove, deleteWord } from "../../store/wordSlice";
+const Dictionary = () => {
   const [term, setTerm] = useState("");
   const [def, setDef] = useState("");
   const [learned, setLearned] = useState(false);
   const [blurLeft, setBlurLeft] = useState(true);
   const [blurRight, setBlurRight] = useState(true);
   const [edit, setEdit] = useState(false);
-
+const dispatch = useDispatch()
+const {words} = useSelector((state) => state);
   const { wordId } = useParams();
 
   let task = words.find(({ id }) => id === +wordId);
@@ -20,41 +22,22 @@ const Dictionary = ({ words, setWords }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (term.trim().length !== 0 || def.trim().length !== 0) {
-      setWords([
-        ...words,
-        {
-          id: Math.floor(Math.random() * 10000),
-          term: term,
-          definition: def,
-          learned: false,
-          right: false,
-          wrong: false,
-          empty: true,
-        },
-      ]);
+      dispatch(handleAdd({
+        id: Math.floor(Math.random() * 10000),
+        term: term,
+        definition: def,
+        learned: false,
+        right: false,
+        wrong: false,
+        empty: true,
+      }))
       setDef("");
       setTerm("");
     }
   };
 
-  const moveToLearned = (index) => {
-    setWords(
-      words.map((word) =>
-        word.id === index ? { ...word, learned: !word.learned } : word
-      )
-    );
-  };
-  const moveToAll = (index) => {
-    setWords(
-      words.map((word) =>
-        word.id === index ? { ...word, learned: !word.learned } : word
-      )
-    );
-  };
-  const deleteWord = (index) => {
-    let newArr = words.filter((word) => word.id !== index);
-    setWords(newArr);
-  };
+
+ 
 
   return (
     <div className="container">
@@ -128,15 +111,15 @@ const Dictionary = ({ words, setWords }) => {
                     </Link>
                   </>
                   {(!word.learned && (
-                    <button onClick={() => moveToLearned(word.id)}>
+                    <button onClick={() => dispatch(toggleMove(word.id))}>
                       в изученные
                     </button>
                   )) || (
-                    <button onClick={() => moveToAll(word.id)}>
+                    <button onClick={() => dispatch(toggleMove(word.id))}>
                       в словарь
                     </button>
                   )}
-                  <button onClick={() => deleteWord(word.id)}>удалить</button>
+                  <button onClick={() => dispatch(deleteWord(word.id))}>удалить</button>
                 </div>
               )
           )) ||
@@ -147,24 +130,22 @@ const Dictionary = ({ words, setWords }) => {
                   <div>{word.term}</div>
                   <div>{word.definition}</div>
                   {(!word.learned && (
-                    <button onClick={() => moveToLearned(word.id)}>
+                    <button onClick={() => dispatch(toggleMove(word.id))}>
                       в изученные
                     </button>
                   )) || (
-                    <button onClick={() => moveToAll(word.id)}>
+                    <button onClick={() => dispatch(toggleMove(word.id))}>
                       в словарь
                     </button>
                   )}
 
-                  <button onClick={() => deleteWord(word.id)}>удалить</button>
+                  <button onClick={() => dispatch(deleteWord(word.id))}>удалить</button>
                 </div>
               )
           )}
       </div>
       {edit && (
         <EditWord
-          words={words}
-          setWords={setWords}
           task={task}
           edit={edit}
           setEdit={setEdit}

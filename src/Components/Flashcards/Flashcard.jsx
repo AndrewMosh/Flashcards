@@ -2,10 +2,13 @@ import React from "react";
 import "./flashcard.scss";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
-export const Flashcard = ({ words, setWords }) => {
+import { toggleMove } from "../../store/wordSlice";
+import { useSelector, useDispatch } from "react-redux";
+export const Flashcard = () => {
   const [step, setStep] = useState(0);
   const [answer, setAnswer] = useState(false);
+  const dispatch = useDispatch();
+  const { words } = useSelector((state) => state);
   let filteredWords = words.filter((word) => word.learned === false);
   let question = filteredWords[step];
   const handleNext = (step) => {
@@ -18,13 +21,6 @@ export const Flashcard = ({ words, setWords }) => {
     }
   };
 
-  const moveToLearned = (index) => {
-    setWords(
-      words.map((word) =>
-        word.id === index ? { ...word, learned: !word.learned } : word
-      )
-    );
-  };
   return (
     <div className="flashcontainer">
       {(filteredWords.length > 0 && (
@@ -33,7 +29,7 @@ export const Flashcard = ({ words, setWords }) => {
             <div>{question.term}</div>
             <span
               title="в изученные"
-              onClick={() => moveToLearned(question.id)}
+              onClick={() => dispatch(toggleMove(question.id))}
             >
               + в изученные
             </span>
