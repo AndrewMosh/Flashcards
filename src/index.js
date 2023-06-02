@@ -1,20 +1,20 @@
-import React, {Suspense} from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
+import React, { Suspense } from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Dictionary from './Components/Dictionary/Dictionary';
-import Header from './Components/Header/Header';
-import { Flashcard } from './Components/Flashcards/Flashcard';
-import { Hangman } from './Components/Hangman/Hangman';
+import Dictionary from "./Components/Dictionary/Dictionary";
+import Header from "./Components/Header/Header";
+import { Flashcard } from "./Components/Flashcards/Flashcard";
+import { Hangman } from "./Components/Hangman/Hangman";
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/Flashcards",
     element: (
       <>
         <Header />
-        <Dictionary />  
+        <Dictionary />
       </>
     ),
   },
@@ -42,18 +42,16 @@ const router = createBrowserRouter([
     element: (
       <>
         <Header />
-        <Dictionary />     
+        <Dictionary />
       </>
     ),
   },
-  
 ]);
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Suspense fallback='loading'>
-  <Provider store={store}> 
+  <Suspense fallback="loading">
+    <Provider store={store}>
       <RouterProvider router={router} />
-  </Provider>
-</Suspense>
+    </Provider>
+  </Suspense>
 );
-
