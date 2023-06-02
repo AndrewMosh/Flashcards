@@ -44,7 +44,7 @@ export const Flashcard = () => {
       )) || (
         <div className="empty">
           <div style={{ color: "white" }}>в словаре нет новых слов</div>
-          <Link to={"/"}>вернуться в словарь</Link>
+          <Link to={"/Flashcards"}>вернуться в словарь</Link>
         </div>
       )}
     </div>
