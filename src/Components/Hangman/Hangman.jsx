@@ -4,7 +4,7 @@ import { Word } from "./Word";
 import "./hangman.scss";
 import { alphabet } from "../../utils/alphabet";
 import { useSelector } from "react-redux";
-
+import InProgress from "../In Progress/InProgress";
 export const Hangman = () => {
   const { words } = useSelector((state) => state);
   const [game, setGame] = useState(false);
@@ -16,26 +16,29 @@ export const Hangman = () => {
   let newWord = word.split("");
 
   return (
-    <div className="hangman">
-      {(!game && words.length > 0 && (
-        <button
-          onClick={() => {
-            setGame(!game);
-            setWord(randomWord);
-          }}
-        >
-          Играть
-        </button>
-      )) ||
-        (game && (
-          <Word
-            newWord={newWord}
-            alpha={alpha}
-            randomWord={randomWord}
-            setAlphabet={setAlphabet}
-            setWord={setWord}
-          />
-        )) || <div style={{ color: "white" }}>словарь пуст</div>}
-    </div>
+    <>
+      <div className="hangman">
+        {(!game && words.length > 0 && (
+          <button
+            onClick={() => {
+              setGame(!game);
+              setWord(randomWord);
+            }}
+          >
+            Играть
+          </button>
+        )) ||
+          (game && (
+            <Word
+              newWord={newWord}
+              alpha={alpha}
+              randomWord={randomWord}
+              setAlphabet={setAlphabet}
+              setWord={setWord}
+            />
+          )) || <div style={{ color: "white" }}>словарь пуст</div>}
+      </div>
+      <InProgress />
+    </>
   );
 };
